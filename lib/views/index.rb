@@ -1,20 +1,21 @@
 $:.unshift File.expand_path('./../lib/app', __FILE__)
 require 'scrapper'
-
+$:.unshift File.expand_path('./../lib/views', __FILE__)
+require 'done'
 
 class Index
 
 
 	def choice
 
-		puts "Veuillez choisir le format d'export des données à scrapper :"
-		puts " > 1 - format JSON"
-		puts " > 2 - format Google Spreadsheet"
-		puts " > 3 - format CSV"
-		puts "=============================================================="
-		print "> "
+		puts "Choisissez le format de vos données à scrapper :"
+		puts " 1 - format JSON"
+		puts " 2 - format Google Spreadsheet"
+		puts " 3 - format CSV"
+		puts " 4 - DONE !"
+		print "Entez votre choix ici : "
 
-		# Je récupère le choix
+		# Get the choice
 
 		choice = gets.chomp.to_i
 
@@ -25,11 +26,11 @@ class Index
 
 	def get_data(choice)
 
-		# Je crée une nouvelle instance Scrapper
+		# New instance
 
 		instance = Scrapper.new
 
-		# Je récupère la liste des hashs dans un tableau 
+		# Get all data into a table
 
 		instance.get_townhall_urls
 
@@ -38,17 +39,19 @@ class Index
 			if choice == 1 then # JSON
 
 				instance.save_as_json
-
+				#puts Index.new.perform
+				puts Done.new.perform
 			elsif choice == 2 then # SPREADSHEET
 
 				instance.save_as_spreadsheet
-
+				#puts Index.new.perform
+				puts Done.new.perform
 			elsif choice == 3 then # CSV
 
 				instance.save_as_csv
-
+				#puts Index.new.perform
+				puts Done.new.perform		
 			end
-
 	end
 
 

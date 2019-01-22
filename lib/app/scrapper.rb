@@ -12,8 +12,6 @@ attr_accessor :mairie_list
 		 
 		@mairie_list = Array.new # Create the Array
 
-		#$url2 = ["http://annuaire-des-mairies.com/95/ableiges.html","http://annuaire-des-mairies.com/95/fosses.html","http://annuaire-des-mairies.com/95/moussy.html"]
-
 		$url.each do |link|
 		doc = Nokogiri::HTML(open(link)) # Open the page
 
@@ -65,15 +63,10 @@ attr_accessor :mairie_list
 	    ws = session.spreadsheet_by_key("1tc5cZjdAQBZEMDLL6IDmcidBCwGQ0_AH-ldP_AlQWu4").worksheets[0]
 	    
 	    
-		ville = "ville"
-		email_ville = 
-	    
-		ville = "ville"
-		email_ville = "email"
-		ws.insert_rows(1, [[ville, email_ville]])	
+		city = "ville"
+		email_city = "email"
+		ws.insert_rows(1, [[city, email_city]])	
 
-	    # Changes content of cells.
-	    # Changes are not sent to the server until you call ws.save().
 	    i=2
 	        @mairie_list.each do |line|
 	                line.each do |mairie, mail|
