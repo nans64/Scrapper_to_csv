@@ -4,12 +4,16 @@ Bundler.require
 
 # lignes qui appellent les fichiers lib/user.rb et lib/event.rb
 # comme ça, tu peux faire User.new dans ce fichier d'application. Top.
-$:.unshift File.expand_path("./../lib", __FILE__)
+$:.unshift File.expand_path("./../lib/app", __FILE__)
+
 require 'scrapper' #plus besoin de préciser le path exact
 
 
-# Open bar pour tester ton application. Tous les fichiers importants sont chargés
-# Tu peux faire User.new, Event.new, binding.pry, User.all, etc etc
+$:.unshift File.expand_path('./../lib/views', __FILE__)
+require 'index'
 
-# Scrapper.new.perform # Trigger the scrapper
-binding.pry
+puts Index.new.perform
+
+
+
+
